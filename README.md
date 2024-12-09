@@ -32,7 +32,7 @@ astro_project/
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/AndriySuprunenko/astro_project.git
    cd astro_project
    ```
 2. Set up a virtual environment:
