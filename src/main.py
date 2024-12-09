@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 
 def main():
     # Встанови координати (Right Ascension і Declination)
-    ra, dec = 180.0, 0.0
+    ra, dec, scale = 180.0, 0.0, 0.2
 
     # Завантаження зображення з SDSS
-    image_path = fetch_sdss_image(ra, dec)
+    image_path = fetch_sdss_image(ra, dec, scale)
     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 
     # Обробка зображення

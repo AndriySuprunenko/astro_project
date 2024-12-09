@@ -2,7 +2,7 @@ import requests
 import os
 from config import RAW_DATA_PATH
 
-def fetch_sdss_image(ra, dec, scale=0.2, width=512, height=512):
+def fetch_sdss_image(ra, dec, scale, width=512, height=512):
     """Завантажує зображення із SDSS."""
     url = f"https://skyserver.sdss.org/dr17/SkyServerWS/ImgCutout/getjpeg"
     params = {
