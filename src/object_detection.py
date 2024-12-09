@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def detect_moving_objects(image1_path, image2_path, threshold=30):
     """
     Виявлення рухомих об'єктів між двома зображеннями.
@@ -26,7 +27,9 @@ def detect_moving_objects(image1_path, image2_path, threshold=30):
     kernel = np.ones((3, 3), np.uint8)
     clean_diff = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, kernel)
 
-    contours, _ = cv2.findContours(clean_diff, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(
+        clean_diff, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+    )
 
     return clean_diff, contours
 

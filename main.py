@@ -5,9 +5,13 @@ from src.image_processing import (
     gaussian_blur,
     canny_edges,
     find_contours,
-    annotate_image
+    annotate_image,
 )
-from src.object_detection import detect_moving_objects, display_detected_objects, save_detected_objects
+from src.object_detection import (
+    detect_moving_objects,
+    display_detected_objects,
+    save_detected_objects,
+)
 import cv2
 import os
 import matplotlib.pyplot as plt
@@ -61,19 +65,19 @@ def process_moving_objects(ra1, dec1, ra2, dec2):
 def visualize_results(original, normalized, blurred, edges, annotated):
     """Функція для візуалізації результатів на кожному етапі."""
     fig, axs = plt.subplots(1, 5, figsize=(20, 5))
-    axs[0].imshow(original, cmap='gray')
+    axs[0].imshow(original, cmap="gray")
     axs[0].set_title("Оригінал")
 
-    axs[1].imshow(normalized, cmap='gray')
+    axs[1].imshow(normalized, cmap="gray")
     axs[1].set_title("Нормалізоване")
 
-    axs[2].imshow(blurred, cmap='gray')
+    axs[2].imshow(blurred, cmap="gray")
     axs[2].set_title("Розмите")
 
-    axs[3].imshow(edges, cmap='gray')
+    axs[3].imshow(edges, cmap="gray")
     axs[3].set_title("Краї")
 
-    axs[4].imshow(annotated, cmap='gray')
+    axs[4].imshow(annotated, cmap="gray")
     axs[4].set_title("Анотоване")
 
     for ax in axs:
@@ -85,11 +89,27 @@ def visualize_results(original, normalized, blurred, edges, annotated):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Обробка астрономічних зображень")
-    parser.add_argument("--mode", choices=["single", "motion"], required=True, help="Режим роботи")
-    parser.add_argument("--ra1", type=float, required=True, help="Right Ascension (перший кадр або одиночний кадр)")
-    parser.add_argument("--dec1", type=float, required=True, help="Declination (перший кадр або одиночний кадр)")
-    parser.add_argument("--ra2", type=float, help="Right Ascension (другий кадр, якщо обрано motion)")
-    parser.add_argument("--dec2", type=float, help="Declination (другий кадр, якщо обрано motion)")
+    parser.add_argument(
+        "--mode", choices=["single", "motion"], required=True, help="Режим роботи"
+    )
+    parser.add_argument(
+        "--ra1",
+        type=float,
+        required=True,
+        help="Right Ascension (перший кадр або одиночний кадр)",
+    )
+    parser.add_argument(
+        "--dec1",
+        type=float,
+        required=True,
+        help="Declination (перший кадр або одиночний кадр)",
+    )
+    parser.add_argument(
+        "--ra2", type=float, help="Right Ascension (другий кадр, якщо обрано motion)"
+    )
+    parser.add_argument(
+        "--dec2", type=float, help="Declination (другий кадр, якщо обрано motion)"
+    )
 
     args = parser.parse_args()
 
