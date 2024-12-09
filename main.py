@@ -39,23 +39,22 @@ def process_single_image(ra, dec, scale=1.0):
 
 
 def process_moving_objects(ra1, dec1, ra2, dec2):
-    """Обробка для виявлення рухомих об'єктів."""
     print("Завантаження зображень з SDSS...")
-    image1_path = fetch_sdss_image(ra1, dec1)
-    image2_path = fetch_sdss_image(ra2, dec2)
+    scale = 1.0  # Встановіть значення масштабу
 
-    print("Виявлення рухомих об'єктів...")
+    # Завантаження зображень
+    image1_path = fetch_sdss_image(ra1, dec1, scale)
+    image2_path = fetch_sdss_image(ra2, dec2, scale)
+
+    # Виявлення рухомих об'єктів
     diff_image, contours = detect_moving_objects(image1_path, image2_path)
 
-    # Створення папки, якщо її немає
-    os.makedirs("data/processed", exist_ok=True)
-
-    print("Збереження результатів...")
+    # Збереження результатів
     diff_output_path = "data/processed/detected_diff.jpg"
     cv2.imwrite(diff_output_path, diff_image)
     save_detected_objects(contours, "data/processed/objects.csv")
 
-    print("Відображення результатів...")
+    # Відображення результатів
     display_detected_objects(image1_path, contours)
 
 
