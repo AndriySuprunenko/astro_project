@@ -1,13 +1,13 @@
 import argparse
-from src.sdss_api import fetch_sdss_image
-from src.image_processing import (
+from sdss_api import fetch_sdss_image
+from image_processing import (
     normalize_brightness,
     gaussian_blur,
     canny_edges,
     find_contours,
     annotate_image,
 )
-from src.object_detection import (
+from object_detection import (
     detect_moving_objects,
     display_detected_objects,
     save_detected_objects,
