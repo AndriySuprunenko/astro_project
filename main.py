@@ -23,7 +23,7 @@ def ensure_data_folder():
     os.makedirs("data/processed", exist_ok=True)
 
 
-def process_single_image(ra, dec, scale=1.0):
+def process_single_image(ra, dec, scale=1.3):
     """Обробка одного зображення."""
     logging.info("Завантаження зображення з SDSS...")
     image_path = fetch_sdss_image(ra, dec, scale)
@@ -109,13 +109,18 @@ def process_apod(date=None):
 
 if __name__ == "__main__":
     # Налаштування логування
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
     ensure_data_folder()
 
     parser = argparse.ArgumentParser(description="Обробка астрономічних зображень")
     parser.add_argument(
-        "--mode", choices=["single", "motion", "apod"], required=True, help="Режим роботи"
+        "--mode",
+        choices=["single", "motion", "apod"],
+        required=True,
+        help="Режим роботи",
     )
     parser.add_argument(
         "--ra1",
@@ -133,7 +138,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dec2", type=float, help="Declination (другий кадр, якщо обрано motion)"
     )
-    parser.add_argument("--date", type=str, help="Дата у форматі YYYY-MM-DD для завантаження APOD.")
+    parser.add_argument(
+        "--date", type=str, help="Дата у форматі YYYY-MM-DD для завантаження APOD."
+    )
 
     args = parser.parse_args()
 
